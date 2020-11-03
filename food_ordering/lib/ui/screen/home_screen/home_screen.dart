@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:food_ordering/ui/common_widgets/custom_bottom_navigation_bar.dart';
 import 'package:food_ordering/ui/common_widgets/main_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -210,6 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MainAppBar(),
+      bottomNavigationBar: CustomBottomNavigationBar(highlightItemKey: BottomBarItemKey.OldOrder,),
       backgroundColor: Color.fromRGBO(248, 246, 246, 1),
       body: Container(
         padding: EdgeInsets.only(left: 15),
