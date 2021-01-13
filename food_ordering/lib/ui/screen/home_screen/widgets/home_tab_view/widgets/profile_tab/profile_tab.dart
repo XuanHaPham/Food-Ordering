@@ -27,20 +27,19 @@ class _ProfileTabState extends State<ProfileTab> {
               child: Text(
                 profileItem.title,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey[900]
-                ),
+                style: TextStyle(fontSize: 18, color: Colors.grey[900]),
               ),
             ),
           ],
         ),
-        isLastItem ? SizedBox() : Container(
-          margin: EdgeInsets.fromLTRB(0, 10, 10, 10),
-          height: 0.7,
-          width: double.infinity,
-          color: Colors.grey,
-        ),
+        isLastItem
+            ? SizedBox()
+            : Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 10, 10),
+                height: 0.7,
+                width: double.infinity,
+                color: Colors.grey,
+              ),
       ],
     );
   }
@@ -48,60 +47,73 @@ class _ProfileTabState extends State<ProfileTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
-      padding: EdgeInsets.fromLTRB(10, 35, 10, 0),
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Tên Của Hạ",
-                      style: TextStyle(
+          Container(
+            decoration: BoxDecoration(color: Colors.white),
+            padding: EdgeInsets.fromLTRB(20, 35, 20, 20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Tên Của Hạ",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "Mail của Hạ @gmail.com",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "EDIT",
+                    style: TextStyle(
+                        color: Colors.red,
                         fontWeight: FontWeight.w800,
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Mail của Hạ @gmail.com",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
+                        fontSize: 18),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
+                padding: EdgeInsets.fromLTRB(20, 35, 20, 20),
+                child: Column(
+                  children: <Widget>[
+                    ...LIST_ITEM.map(
+                      (profileItem) => _buidProfileItem(
+                          profileItem,
+                          LIST_ITEM.indexOf(profileItem) ==
+                              LIST_ITEM.length - 1),
                     ),
                   ],
                 ),
               ),
-              Container(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  "EDIT",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 18),
-                ),
-              ),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: <Widget>[
-                ...LIST_ITEM.map(
-                  (profileItem) => _buidProfileItem(profileItem, LIST_ITEM.indexOf(profileItem) == LIST_ITEM.length-1),
-                ),
-              ],
             ),
           ),
         ],
