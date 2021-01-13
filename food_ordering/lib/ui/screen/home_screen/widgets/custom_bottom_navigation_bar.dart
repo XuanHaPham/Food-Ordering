@@ -1,3 +1,5 @@
+import 'package:bubbled_navigation_bar/bubbled_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -22,11 +24,53 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         ),
         color: Color.fromRGBO(245, 25, 41, 1),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: BOTTOM_ITEM_LIST.map((item) {
-          return _buildBottomBarItem(item);
-        }).toList(),
+      child: Container(
+        alignment: Alignment.center,
+        child: BubbledNavigationBar(
+          backgroundColor: Colors.transparent,
+          defaultBubbleColor: Color.fromRGBO(246, 59, 73, 1),
+          onTap: (index) {
+            // handle tap
+          },
+          items: <BubbledNavigationBarItem>[
+            BubbledNavigationBarItem(
+              icon: Icon(Ionicons.ios_compass, size: 35, color: Colors.black),
+              activeIcon:
+                  Icon(Ionicons.ios_compass, size: 35, color: Colors.white),
+              title: Text(
+                'Explore',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+            BubbledNavigationBarItem(
+              icon: Icon(MaterialCommunityIcons.history, size: 35, color: Colors.black),
+              activeIcon:
+                  Icon(MaterialCommunityIcons.history, size: 35, color: Colors.white),
+              title: Text(
+                'History',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+            BubbledNavigationBarItem(
+              icon: Icon(Ionicons.ios_basket, size: 35, color: Colors.black),
+              activeIcon:
+                  Icon(Ionicons.ios_basket, size: 35, color: Colors.white),
+              title: Text(
+                'Basket',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+            BubbledNavigationBarItem(
+              icon: Icon(FontAwesome.user_circle, size: 35, color: Colors.black),
+              activeIcon: Icon(FontAwesome.user_circle,
+                  size: 35, color: Colors.white),
+              title: Text(
+                'Profile',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

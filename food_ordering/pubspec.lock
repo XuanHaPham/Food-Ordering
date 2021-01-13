@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.1"
+  bubbled_navigation_bar:
+    dependency: "direct main"
+    description:
+      name: bubbled_navigation_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   characters:
     dependency: transitive
     description:
