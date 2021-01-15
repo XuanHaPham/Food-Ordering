@@ -43,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
         pageController: _pageController,
       ),
       backgroundColor: Color.fromRGBO(248, 246, 246, 1),
-      body: HomeTabView(pageController: _pageController, tabController: _menuPositionController,),
+      body: HomeTabView(
+        pageController: _pageController,
+        tabController: _menuPositionController,
+      ),
     );
   }
 }
