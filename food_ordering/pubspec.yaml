@@ -29,10 +29,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  bubbled_navigation_bar: ^0.0.3
+  dotted_border: ^1.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_icons: ^1.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
