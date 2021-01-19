@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/Offers_tab/widgets/promos_tab.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/Offers_tab/widgets/restaurants_tab.dart';
 
@@ -32,18 +33,18 @@ class _OffersTabState extends State<OffersTab>
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            height: 37,
-            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            height: 37.h,
+            margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(5.0.r),
               border: Border.all(
                 color: Color.fromRGBO(245, 25, 41, 1),
-                width: 1,
+                width: 1.w,
               ),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(4.0),
+              borderRadius: BorderRadius.circular(4.0.r),
               clipBehavior: Clip.antiAlias,
               child: TabBar(
                 controller: _tabController,

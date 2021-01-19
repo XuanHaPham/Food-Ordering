@@ -1,5 +1,6 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/explore_tab/widgets/main_app_bar.dart';
 
 class ExploreTab extends StatefulWidget {
@@ -10,25 +11,24 @@ class ExploreTab extends StatefulWidget {
 }
 
 class _ExploreTabState extends State<ExploreTab> {
-
    Widget _buildCategoryItem({Category category}){
     return Container(
-      padding: EdgeInsets.only(right: 10),
+      padding: EdgeInsets.only(right: 10.w),
       child: Column(
         children: <Widget>[
           Container(
-            height: 75,
-            width: 100,
+            height: 75.h,
+            width: 100.w,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(category.imageUrl),
               ),
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(5.r),
             ),
           ),
-          SizedBox(height: 5,),
-          Text(category.name, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13),)
+          SizedBox(height: 5.h),
+          Text(category.name, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13.sp,),)
         ],
       ),
     );
@@ -36,27 +36,27 @@ class _ExploreTabState extends State<ExploreTab> {
 
   Widget _buildPopularItem({Product product}){
     return Container(
-      padding: EdgeInsets.fromLTRB(6, 6, 13, 6),
-      margin: EdgeInsets.only(right: 10),
+      padding: EdgeInsets.fromLTRB(6.w, 6.h, 13.w, 6.h),
+      margin: EdgeInsets.only(right: 10.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(5.r),
         border: Border.all(color: Colors.grey[200])
       ),
       child: Row(
         children: [
            Container(
-            height: 85,
-            width: 75,
+            height: 85.h,
+            width: 75.w,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(product.imageUrl),
               ),
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(5.r),
             ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(width: 10.w,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -64,7 +64,7 @@ class _ExploreTabState extends State<ExploreTab> {
                 product.name,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500
                 ),
               ),
@@ -72,19 +72,19 @@ class _ExploreTabState extends State<ExploreTab> {
                 'By '+ product.branch,
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 12.sp,
                   color: Colors.grey,
                   fontWeight: FontWeight.w500
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10.h,),
               Container(
-                height: 1,
-                width: 40,
+                height: 1.h,
+                width: 40.w,
                 color: Colors.grey[300],
-                margin: const EdgeInsets.only(right: 5.0),
+                margin: EdgeInsets.only(right: 5.w),
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -92,22 +92,22 @@ class _ExploreTabState extends State<ExploreTab> {
                     '€' + product.unitPrice.toStringAsFixed(2),
                     style: TextStyle(
                       color: Colors.grey[600],
-                      fontSize: 13,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w700
                     ),
                   ),
-                  SizedBox(width: 10,),
+                  SizedBox(width: 10.w,),
                   Text(
                     '€' + product.finalPrice.toStringAsFixed(2),
                     style: TextStyle(
                       color: Colors.grey[900],
-                      fontSize: 15,
+                      fontSize: 15.sp,
                       fontWeight: FontWeight.w700
                     ),
                   ),
                 ],
               )
-            ],
+             ],
           ),
         ],
       ),
@@ -117,11 +117,11 @@ class _ExploreTabState extends State<ExploreTab> {
   Widget _buildNearByDealItem({Product product}){
     return Container(
       padding: EdgeInsets.all(6),
-      margin: EdgeInsets.only(right: 10),
-      width: 200,
+      margin: EdgeInsets.only(right: 10.w),
+      width: 200.w,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(5.r),
         border: Border.all(color: Colors.grey[200])
       ),
       child: Column(
@@ -131,52 +131,52 @@ class _ExploreTabState extends State<ExploreTab> {
             alignment: Alignment.topRight,
             children: [
               Container(
-                height: 85,
+                height: 85.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(product.imageUrl),
                   ),
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(5.r),
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 2),
-                margin: EdgeInsets.all(5),
-                height: 15,
-                width: 50,
+                padding: EdgeInsets.symmetric(vertical: 2.h),
+                margin: EdgeInsets.all(5.w),
+                height: 15.h,
+                width: 50.w,
                 decoration: BoxDecoration(
                   color: Colors.red,
-                  borderRadius: BorderRadius.circular(3)
+                  borderRadius: BorderRadius.circular(3.r)
                 ),
                 child: Text(
                   product.discountPercent.toStringAsFixed(0) + "% OFF",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 10.sp,
                     color: Colors.white
                   ),
                 ),
               )
             ],
           ),
-          SizedBox(height: 5,),
+          SizedBox(height: 5.h),
           Text(
             product.branch + "'S",
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 15
+              fontSize: 15.sp
             ),
           ),
           Text(
             product.name,
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 13
+              fontSize: 13.sp
             ),
           ),
-          SizedBox(height: 8,),
+          SizedBox(height: 8.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -184,16 +184,16 @@ class _ExploreTabState extends State<ExploreTab> {
                 '€' + product.unitPrice.toStringAsFixed(2),
                 style: TextStyle(
                   color: Colors.grey[600],
-                  fontSize: 13,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w700
                 ),
               ),
-              SizedBox(width: 10,),
+              SizedBox(width: 10.w,),
               Text(
                 '€' + product.finalPrice.toStringAsFixed(2),
                 style: TextStyle(
                   color: Colors.grey[900],
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w700
                 ),
               ),
@@ -209,10 +209,10 @@ class _ExploreTabState extends State<ExploreTab> {
     return Scaffold(
       appBar: MainAppBar(),
       body: Container(
-          padding: EdgeInsets.only(left: 15),
-          child: Column(
+          padding: EdgeInsets.only(left: 15.w),
+          child: ListView(
             children: <Widget>[
-              SizedBox(height: 15,),            
+              SizedBox(height: 15.h,),            
               Row(
                 children: <Widget>[
                   Align(
@@ -221,7 +221,7 @@ class _ExploreTabState extends State<ExploreTab> {
                       "Top Categories",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 17
+                        fontSize: 17.sp
                       ),
                     ),
                   ),
@@ -229,25 +229,25 @@ class _ExploreTabState extends State<ExploreTab> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        Icon(FeatherIcons.filter, color: Colors.grey[600], size: 16,),
-                        SizedBox(width: 5,),
+                        Icon(FeatherIcons.filter, color: Colors.grey[600], size: 16.sp,),
+                        SizedBox(width: 5.w,),
                         Text(
                           "Filter",
                           style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 13,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w400
                           ),
                         ),
-                        SizedBox(width: 15,),
+                        SizedBox(width: 15.w,),
                       ],
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(height: 15.h,),
               Container(
-                height: 100,
+                height: 100.h,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
@@ -256,7 +256,7 @@ class _ExploreTabState extends State<ExploreTab> {
                 ),
               ),
               Divider( color: Colors.grey[300],),
-               SizedBox(height: 10,),            
+               SizedBox(height: 10.h,),            
               Row(
                 children: <Widget>[
                   Align(
@@ -265,7 +265,7 @@ class _ExploreTabState extends State<ExploreTab> {
                       "Popular Items",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 17
+                        fontSize: 17.sp
                       ),
                     ),
                   ),
@@ -275,17 +275,17 @@ class _ExploreTabState extends State<ExploreTab> {
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 13,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w400
                       ),
                     ),
                   ),
-                  SizedBox(width: 15,),
+                  SizedBox(width: 15.w,),
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(height: 15.h,),
               Container(
-                height: 100,
+                height: 100.h,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
@@ -293,9 +293,9 @@ class _ExploreTabState extends State<ExploreTab> {
                   ],
                 ),
               ),
-              SizedBox(height: 5,), 
+              SizedBox(height: 5.h), 
               Divider( color: Colors.grey[300],),
-              SizedBox(height: 10,),            
+              SizedBox(height: 10.h,),            
               Row(
                 children: <Widget>[
                   Align(
@@ -304,7 +304,7 @@ class _ExploreTabState extends State<ExploreTab> {
                       "Nearby Deals",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 17
+                        fontSize: 17.sp
                       ),
                     ),
                   ),
@@ -314,17 +314,17 @@ class _ExploreTabState extends State<ExploreTab> {
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 13,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w400
                       ),
                     ),
                   ),
-                  SizedBox(width: 15,),
+                  SizedBox(width: 15.w,),
                 ],
               ),
-               SizedBox(height: 15,),
+               SizedBox(height: 15.h,),
               Container(
-                height: 170,
+                height: 170.h,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
@@ -332,6 +332,7 @@ class _ExploreTabState extends State<ExploreTab> {
                   ],
                 ),
               ), 
+               SizedBox(height: 15.h,),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileTab extends StatefulWidget {
   ProfileTab({Key key}) : super(key: key);
@@ -17,17 +18,17 @@ class _ProfileTabState extends State<ProfileTab> {
             Icon(
               profileItem.icon,
               color: Colors.grey,
-              size: 27,
+              size: 27.sp,
             ),
             SizedBox(
-              width: 15,
+              width: 15.w,
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 5.h, 0, 0),
               child: Text(
                 profileItem.title,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.grey[900]),
+                style: TextStyle(fontSize: 18.sp, color: Colors.grey[900]),
               ),
             ),
           ],
@@ -35,8 +36,8 @@ class _ProfileTabState extends State<ProfileTab> {
         isLastItem
             ? SizedBox()
             : Container(
-                margin: EdgeInsets.fromLTRB(0, 10, 10, 10),
-                height: 0.7,
+                margin: EdgeInsets.fromLTRB(0, 10.h, 10.w, 10.h),
+                height: 0.7.h,
                 width: double.infinity,
                 color: Colors.grey,
               ),
@@ -51,7 +52,7 @@ class _ProfileTabState extends State<ProfileTab> {
         children: [
           Container(
             decoration: BoxDecoration(color: Colors.white),
-            padding: EdgeInsets.fromLTRB(20, 35, 20, 20),
+            padding: EdgeInsets.fromLTRB(20.w, 35.h, 20.w, 20.h),
             child: Row(
               children: [
                 Expanded(
@@ -62,18 +63,18 @@ class _ProfileTabState extends State<ProfileTab> {
                         "Tên Của Hạ",
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 5.h,
                       ),
                       Text(
                         "Mail của Hạ @gmail.com",
                         style: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ],
@@ -86,7 +87,7 @@ class _ProfileTabState extends State<ProfileTab> {
                     style: TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.w800,
-                        fontSize: 18),
+                        fontSize: 18.sp),
                   ),
                 ),
               ],
@@ -98,11 +99,11 @@ class _ProfileTabState extends State<ProfileTab> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20.r),
+                    bottomRight: Radius.circular(20.r),
                   ),
                 ),
-                padding: EdgeInsets.fromLTRB(20, 35, 20, 20),
+                padding: EdgeInsets.fromLTRB(20.w, 35.h, 20.w, 20.h),
                 child: Column(
                   children: <Widget>[
                     ...LIST_ITEM.map(

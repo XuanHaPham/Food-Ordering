@@ -2,6 +2,7 @@ import 'package:bubbled_navigation_bar/bubbled_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final MenuPositionController tabController;
@@ -17,11 +18,22 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   BubbledNavigationBarItem _buildBarItem(IconData icon, String title) {
     return BubbledNavigationBarItem(
-      icon: Icon(icon, size: 35, color: Colors.grey[900]),
-      activeIcon: Icon(icon, size: 35, color: Colors.white),
+      icon: Icon(
+        icon,
+        size: 35.sp,
+        color: Colors.grey[900],
+      ),
+      activeIcon: Icon(
+        icon,
+        size: 35.sp,
+        color: Colors.white,
+      ),
       title: Text(
         title,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16.sp,
+        ),
       ),
     );
   }
@@ -29,11 +41,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 70.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
         ),
         color: Color.fromRGBO(245, 25, 41, 1),
       ),

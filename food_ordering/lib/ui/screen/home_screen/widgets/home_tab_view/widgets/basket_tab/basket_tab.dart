@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/basket_tab/widgets/basket_product_list.dart';
 
 class BasketTab extends StatefulWidget {
@@ -37,11 +38,11 @@ class _BasketTabState extends State<BasketTab> {
 
   Widget _buildDeliverToWork() {
     return Container(
-      padding: EdgeInsets.fromLTRB(15, 10, 15, 20),
+      padding: EdgeInsets.fromLTRB(15.w, 10.h, 15.w, 20.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
         ),
         color: Colors.white,
       ),
@@ -50,46 +51,50 @@ class _BasketTabState extends State<BasketTab> {
         children: [
           Row(
             children: [
-              Icon(FeatherIcons.truck),
+              Icon(FeatherIcons.truck, size: 20.sp,),
               SizedBox(
-                width: 10,
+                width: 10.w,
               ),
               Expanded(
                 child: Text(
                   "Deliver to Work",
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14.sp,),
                 ),
               ),
               Text(
                 "CHANGE",
                 textAlign: TextAlign.end,
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 14.sp,
                 ),
               )
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           Text(
             "199/79, Le Quang Dinh, P.7, Q.Binh Thanh...",
-            style: TextStyle(color: Colors.grey, fontSize: 13),
+            style: TextStyle(color: Colors.grey, fontSize: 14.sp),
           ),
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           Container(
-            height: 30,
+            height: 30.h,
             width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(5.r),
               color: Color.fromRGBO(245, 25, 41, 1),
             ),
             alignment: Alignment.center,
             child: Text(
               "MAKE PAYMENT",
-              style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700,),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],
@@ -99,12 +104,12 @@ class _BasketTabState extends State<BasketTab> {
 
   Widget _buildBillDetail() {
     return Container(
-      padding: EdgeInsets.fromLTRB(15, 0, 15, 20),
-      margin: EdgeInsets.only(bottom: 15),
+      padding: EdgeInsets.fromLTRB(15.w, 0, 15.w, 20.h),
+      margin: EdgeInsets.only(bottom: 15.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20.r),
+          bottomRight: Radius.circular(20.r),
         ),
         color: Colors.white,
       ),
@@ -113,7 +118,10 @@ class _BasketTabState extends State<BasketTab> {
         children: [
           Text(
             "Bill Details",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20.sp,
+            ),
           ),
           SizedBox(
             height: 17,
@@ -123,8 +131,8 @@ class _BasketTabState extends State<BasketTab> {
           _buildBiillDetailItem("Delivery Free", 1),
           _buildBiillDetailItem("Offer 10% OFF", 3.03, isOffer: true),
           Container(
-            margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-            height: 0.4,
+            margin: EdgeInsets.fromLTRB(10.w, 15.h, 10.w, 15.h),
+            height: 0.4.h,
             width: double.infinity,
             color: Colors.grey[400],
           ),
@@ -133,20 +141,23 @@ class _BasketTabState extends State<BasketTab> {
             children: [
               Text(
                 "To Pay",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               Text(
                 '€27.27',
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),
             ],
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-            height: 0.4,
+            margin: EdgeInsets.fromLTRB(10.w, 15.h, 10.w, 15.h),
+            height: 0.4.h,
             width: double.infinity,
             color: Colors.grey[400],
           ),
@@ -156,21 +167,22 @@ class _BasketTabState extends State<BasketTab> {
               Text(
                 "Any request for the restaurant?",
                 style: TextStyle(
-                    color: Colors.grey[500],
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13),
+                  color: Colors.grey[500],
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14.sp,
+                ),
               ),
               Icon(
                 FeatherIcons.edit,
-                size: 20,
+                size: 20.sp,
               )
             ],
           ),
           SizedBox(
-            height: 15,
+            height: 15.h,
           ),
           Container(
-            height: 35,
+            height: 35.h,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -178,53 +190,56 @@ class _BasketTabState extends State<BasketTab> {
                 Expanded(
                   child: DottedBorder(
                     borderType: BorderType.RRect,
-                    radius: Radius.circular(8),
+                    radius: Radius.circular(8.r),
                     dashPattern: [4],
-                    strokeWidth: 1.5,
+                    strokeWidth: 1.5.w,
                     color: Colors.grey[400],
                     child: TextField(
                       onChanged: (value) {},
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10.w, vertical: 12.h),
                         isDense: true,
                         hintText: "Enter discount code",
                         hintStyle:
-                            TextStyle(fontSize: 14, color: Colors.grey[400]),
+                            TextStyle(fontSize: 14.sp, color: Colors.grey[400]),
                         focusColor: Colors.blue,
                         enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8.r),
                             borderSide: BorderSide(
-                                width: 1, color: Colors.transparent)),
+                                width: 1.w, color: Colors.transparent)),
                         focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8.r),
                             borderSide: BorderSide(
-                                width: 1, color: Colors.transparent)),
+                                width: 1.w, color: Colors.transparent)),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide(
-                                width: 1, color: Colors.transparent)),
+                                width: 1.w, color: Colors.transparent)),
                       ),
                     ),
                   ),
                 ),
                 Container(
                   height: double.infinity,
-                  width: 110,
-                  margin: EdgeInsets.only(left: 10),
+                  width: 110.w,
+                  margin: EdgeInsets.only(left: 10.w),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(5.r),
                     color: Colors.grey[400],
                   ),
                   alignment: Alignment.center,
                   child: Text(
                     "APPLY",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 )
               ],
@@ -241,23 +256,32 @@ class _BasketTabState extends State<BasketTab> {
     bool isOffer = false,
   }) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 10.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style:
-                TextStyle(color: Colors.grey[500], fontWeight: FontWeight.w600),
+            style: TextStyle(
+              color: Colors.grey[500],
+              fontWeight: FontWeight.w600,
+              fontSize: 14.sp,
+            ),
           ),
           isOffer
               ? Text(
                   '- €' + amount.toStringAsFixed(2),
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                  ),
                 )
               : Text(
                   '€' + amount.toStringAsFixed(2),
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                  ),
                 ),
         ],
       ),
@@ -267,17 +291,17 @@ class _BasketTabState extends State<BasketTab> {
   Widget _buildBranch() {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
+      padding: EdgeInsets.fromLTRB(15.w, 20.h, 15.w, 20.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             "assets/images/sample_image/mcd_logo.png",
-            height: 40,
-            width: 40,
+            height: 40.h,
+            width: 40.h,
           ),
           SizedBox(
-            width: 20,
+            width: 20.w,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,14 +309,14 @@ class _BasketTabState extends State<BasketTab> {
               Text(
                 "McDonald's",
                 style: TextStyle(
-                  fontSize: 19,
+                  fontSize: 19.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               Text(
                 "Bodakdev",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   color: Colors.grey[500],
                 ),
               )
