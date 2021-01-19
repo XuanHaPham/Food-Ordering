@@ -1,9 +1,9 @@
 import 'package:bubbled_navigation_bar/bubbled_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/Offers_tab/offers_tab.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/basket_tab/basket_tab.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/explore_tab/explore_tab.dart';
-import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/history_tab/history_tab.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/profile_tab/profile_tab.dart';
 
 class HomeTabView extends StatefulWidget {
@@ -40,7 +40,7 @@ class _HomeTabViewState extends State<HomeTabView> {
           controller: widget.pageController,
           children: <Widget>[
             ExploreTab(),
-            HistoryTab(),
+            OffersTab(),
             BasketTab(),
             ProfileTab(),
           ],

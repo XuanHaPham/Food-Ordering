@@ -5,10 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/custom_bottom_navigation_bar.dart';
 import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/home_tab_view.dart';
-import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/basket_tab/basket_tab.dart';
-import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/explore_tab/explore_tab.dart';
-import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/history_tab/history_tab.dart';
-import 'package:food_ordering/ui/screen/home_screen/widgets/home_tab_view/widgets/profile_tab/profile_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);

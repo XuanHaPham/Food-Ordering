@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class RestaurantsTab extends StatefulWidget {
@@ -12,11 +13,11 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 10.w),
       child: ListView(
         children: [
           Container(
-            height: 100,
+            height: 100.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
@@ -26,7 +27,7 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
           ),
           _buildTitle("Today's Offers", isShowViewAll: false),
           Container(
-            height: 300,
+            height: 300.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
@@ -41,50 +42,44 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
 
   Widget _buildTodayOffer(Offer offer) {
     return Container(
-      width: 150,
-      margin: EdgeInsets.only(right: 15),
+      width: 150.w,
+      margin: EdgeInsets.only(right: 15.w),
       child: Column(
         children: [
-         Stack(
+          Stack(
             alignment: Alignment.topRight,
             children: [
               Container(
-                height: 110,
+                height: 110.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(offer.imageUrl),
                   ),
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(5.r),
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 4),
-                margin: EdgeInsets.all(5),
+                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+                margin: EdgeInsets.all(5.w),
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(245, 25, 41, 1),
-                  borderRadius: BorderRadius.circular(3)
-                ),
+                    color: Color.fromRGBO(245, 25, 41, 1),
+                    borderRadius: BorderRadius.circular(3.r)),
                 child: Text(
                   offer.discountPersent.toStringAsFixed(0) + "% OFF",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  ),
+                      fontSize: 12.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
               )
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                ""
-              )
-            ],
+            children: [Text("")],
           )
         ],
       ),
@@ -93,14 +88,14 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
 
   Widget _buildTitle(String title, {bool isShowViewAll = true}) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 25, 0, 10),
+      margin: EdgeInsets.fromLTRB(0, 25.h, 0, 10.w),
       child: Row(
         children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
             ),
           ),
           isShowViewAll
@@ -110,7 +105,7 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
                     textAlign: TextAlign.end,
                     style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 13,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w400),
                   ),
                 )
@@ -122,11 +117,11 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
 
   Widget _buildBestDiscount(BestDiscount bestDiscount) {
     return Container(
-      width: 270,
-      margin: EdgeInsets.only(right: 10),
-      padding: EdgeInsets.fromLTRB(10, 10, 20, 10),
+      width: 250.w,
+      margin: EdgeInsets.only(right: 10.w),
+      padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 10.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         color: Colors.grey[850],
         image: DecorationImage(
           fit: BoxFit.cover,
@@ -142,17 +137,17 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
               Text(
                 bestDiscount.discountPersent.toString() + '%',
                 style: TextStyle(
-                    fontSize: 27,
+                    fontSize: 27.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               SizedBox(
-                height: 4,
+                height: 4.h,
               ),
               Text(
                 "DISCOUNT",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
@@ -172,7 +167,7 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -182,20 +177,20 @@ class _RestaurantsTabState extends State<RestaurantsTab> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 11,
+                    fontSize: 11.sp.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+                  padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 4.h),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(4)),
+                      borderRadius: BorderRadius.circular(4.r)),
                   child: Text(
                     DateFormat.yMMMMd().format(bestDiscount.expriceDate),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
