@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:food_ordering/ui/screen/home_screen/home_screen.dart';
+import 'package:food_ordering/ui/screen/sign_in_screen/sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key key}) : super(key: key);
@@ -17,12 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+          MaterialPageRoute(builder: (BuildContext context) => SignInSCreen()));
     });
-    // Timer(
-    //     Duration(seconds: 5),
-    //     () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //         builder: (BuildContext context) => HomeScreen())));
   }
 
   @override
