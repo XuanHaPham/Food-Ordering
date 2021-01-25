@@ -2,12 +2,12 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_ordering/ui/splash_screen/splash_screen.dart';
+import 'package:food_ordering/ui/screen/splash_screen/splash_screen.dart';
 
 void main() {
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: false,
       builder: (context) => MyApp(),
     ),
   );
