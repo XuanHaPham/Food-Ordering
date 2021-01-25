@@ -35,6 +35,8 @@ dependencies:
   device_preview: ^0.5.5
   flutter_screenutil: ^4.0.2+5
   expandable: ^4.1.4
+  provider: ^4.3.3
+  get: ^3.24.0
 
 dev_dependencies:
   flutter_test:

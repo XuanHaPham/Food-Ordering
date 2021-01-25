@@ -1,8 +1,8 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/splash_screen/splash_screen.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      child: MaterialApp(
+      child: GetMaterialApp(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         title: 'Flutter Demo',

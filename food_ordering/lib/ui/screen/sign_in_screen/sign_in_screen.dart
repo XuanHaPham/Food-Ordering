@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/home_screen/home_screen.dart';
+import 'package:get/get.dart';
 
 class SignInSCreen extends StatefulWidget {
   SignInSCreen({Key key}) : super(key: key);
@@ -67,7 +68,7 @@ class _SignInScreenState extends State<SignInSCreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 30.h,
+                  height: 50.h,
                 ),
                 Text(
                   "Login to continue!",
@@ -200,8 +201,7 @@ class _SignInScreenState extends State<SignInSCreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => HomeScreen()));
+                    Get.to(HomeScreen());
                   },
                   child: Ink(
                     child: Container(
