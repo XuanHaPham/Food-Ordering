@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/sign_in_screen/sign_in_screen.dart';
+import 'package:food_ordering/ui/screen/sign_in_screen/widgets/sign_in_with_google.dart';
 import 'package:get/get.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -22,6 +23,7 @@ class _ProfileTabState extends State<ProfileTab> {
             break;
           }
           case ProfileOrderEnum.logout : {
+            signOutGoogle();
             Get.offAll(SignInSCreen());
             break;
           }
@@ -87,7 +89,7 @@ class _ProfileTabState extends State<ProfileTab> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Tên Của Hạ",
+                        name,
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 20.sp,
@@ -97,7 +99,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         height: 5.h,
                       ),
                       Text(
-                        "Mail của Hạ @gmail.com",
+                        email,
                         style: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w600,

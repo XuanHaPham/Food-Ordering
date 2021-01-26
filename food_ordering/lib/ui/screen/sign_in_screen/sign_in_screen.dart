@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/home_screen/home_screen.dart';
+import 'package:food_ordering/ui/screen/sign_in_screen/widgets/sign_in_with_google.dart';
 import 'package:get/get.dart';
 
 class SignInSCreen extends StatefulWidget {
@@ -238,33 +239,42 @@ class _SignInScreenState extends State<SignInSCreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      height: 35.h,
-                      padding: EdgeInsets.symmetric(horizontal: 30.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        border: Border.all(color: Colors.grey),
-                        color: Colors.white,
-                      ),
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            "assets/images/miscs/g.png",
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(
-                            "Google",
-                            style: TextStyle(
-                              color: Colors.grey[700],
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
+                    InkWell(
+                      onTap: () {
+                        signInWithGoogle().then((result) {
+                          if (result != null) {
+                            Get.to(HomeScreen());
+                          }
+                        });
+                      },
+                      child: Container(
+                        height: 35.h,
+                        padding: EdgeInsets.symmetric(horizontal: 30.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.white,
+                        ),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/miscs/g.png",
+                              height: 20.h,
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              "Google",
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
