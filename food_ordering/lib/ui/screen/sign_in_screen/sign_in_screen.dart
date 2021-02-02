@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/ui/screen/home_screen/home_screen.dart';
+import 'package:food_ordering/ui/screen/register_screen/register_screen.dart';
 import 'package:food_ordering/ui/screen/sign_in_screen/widgets/sign_in_with_google.dart';
 import 'package:get/get.dart';
 
@@ -19,10 +20,6 @@ class _SignInScreenState extends State<SignInSCreen> {
   void initState() {
     super.initState();
     _showPassword = false;
-    // Future.delayed(Duration(seconds: 5), () {
-    //   Navigator.of(context).pushReplacement(
-    //       MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
-    // });
   }
 
   void _togglevisibility() {
@@ -321,7 +318,10 @@ class _SignInScreenState extends State<SignInSCreen> {
                         fontSize: 12.sp,
                       ),
                     ),
-                    Container(
+                    InkWell(
+                      onTap: () {
+                        Get.to(RegisterScreen());
+                      },
                       child: Text(
                         " Sign up",
                         style: TextStyle(
