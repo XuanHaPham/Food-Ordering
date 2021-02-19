@@ -272,34 +272,43 @@ class _SignInScreenState extends State<SignInSCreen> {
                             ),
                           ],
                         ),
-                      ),
+                      ),  
                     ),
-                    Container(
-                      height: 35.h,
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: Colors.blue,
-                      ),
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            "assets/images/miscs/fb.png",
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(
-                            "Facebook",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
+                    InkWell(
+                      onTap: () {
+                        signInWithFacebook().then((result) {
+                          if (result != null) {
+                            Get.to(HomeScreen());
+                          }
+                        });
+                      },
+                      child: Container(
+                        height: 35.h,
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Colors.blue,
+                        ),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/miscs/fb.png",
+                              height: 20.h,
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              "Facebook",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
