@@ -167,6 +167,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_facebook_auth:
+    dependency: "direct main"
+    description:
+      name: flutter_facebook_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  flutter_facebook_auth_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_facebook_auth_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  flutter_facebook_auth_web:
+    dependency: transitive
+    description:
+      name: flutter_facebook_auth_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   flutter_icons:
     dependency: "direct dev"
     description:
@@ -224,6 +245,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.24.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.6"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -532,4 +560,4 @@ packages:
     version: "4.5.1"
 sdks:
   dart: ">=2.10.0 <2.11.0"
-  flutter: ">=1.18.0-6.0.pre <2.0.0"
+  flutter: ">=1.20.0 <2.0.0"
