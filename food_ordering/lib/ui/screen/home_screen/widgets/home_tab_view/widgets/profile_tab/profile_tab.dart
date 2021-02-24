@@ -88,24 +88,24 @@ class _ProfileTabState extends State<ProfileTab> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20.sp,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        email,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.sp,
-                        ),
-                      ),
+                      // Text(
+                      //   name,
+                      //   style: TextStyle(
+                      //     fontWeight: FontWeight.w800,
+                      //     fontSize: 20.sp,
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   height: 5.h,
+                      // ),
+                      // Text(
+                      //   email,
+                      //   style: TextStyle(
+                      //     color: Colors.grey,
+                      //     fontWeight: FontWeight.w600,
+                      //     fontSize: 16.sp,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
