@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering/startups/init_locator.dart';
 import 'package:food_ordering/ui/screens/splash_screen/splash_screen.dart';
 import 'package:food_ordering/ui/utils/loading_dialog_utils.dart';
+import 'package:food_ordering/ui/utils/my_route.dart';
 import 'package:get/get.dart';
 
 
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SplashScreen(),
+        onGenerateRoute: MyRoute.generateRoute,
+        initialRoute: MyRoute.splashScreen,
       ),
     );
   }
