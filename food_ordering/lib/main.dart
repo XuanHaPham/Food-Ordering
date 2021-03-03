@@ -3,10 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_ordering/core/viewmodels/provider.dart';
 import 'package:food_ordering/startups/init_locator.dart';
-import 'package:food_ordering/ui/screens/splash_screen/splash_screen.dart';
 import 'package:food_ordering/ui/utils/loading_dialog_utils.dart';
+import 'package:food_ordering/ui/utils/my_route.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 
 void main() async {
@@ -25,21 +27,27 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: Size(360, 690),
-      child: GetMaterialApp(
-        locale: DevicePreview.locale(context),
-        builder: EasyLoading.init(
-          builder: (context, child){
-            return DevicePreview.appBuilder(context, child);
-          },
+    return MultiProvider(
+      providers: [...viewmodelProvider],
+          child: ScreenUtilInit(
+        designSize: Size(360, 690),
+        child: GetMaterialApp(
+          locale: DevicePreview.locale(context),
+          builder: EasyLoading.init(
+            builder: (context, child){
+              return DevicePreview.appBuilder(context, child);
+            }
+          ),
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          initialRoute: MyRoute.splashScreen,
+          getPages: MyRoute.pageList,
+          //onGenerateRoute: (settings) => MyRoute.generateRoute(settings),
+          
         ),
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: SplashScreen(),
       ),
     );
   }

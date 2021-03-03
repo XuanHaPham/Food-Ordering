@@ -7,7 +7,7 @@ abstract class IAuthViewmodel implements ChangeNotifier{
   
   Future<void> signInWithGoogle();
   Future<void> signInWithFaceBook();
-  Future<ResultAppModel> signOut();
+  Future<void> signOut();
   Future<ResultAppModel> resetPassword(String email);
   
 }

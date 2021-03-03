@@ -1,3 +1,5 @@
-class GlobalData {
+import 'package:firebase_auth/firebase_auth.dart';
 
+class GlobalData {
+  User currentUser;
 }

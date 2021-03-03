@@ -19,45 +19,88 @@ class AuthService implements IAuthService {
       idToken: googleSignInAuthentication.idToken,
     );
 
-    UserCredential authResult = await _auth.signInWithCredential(credential);
-
-    return DataResultAppModel(
-      isSuccess: true,
-      errorMessage: '',
-      data: authResult.user,
-    );
+    return await _signInWithCredential(credential);
   }
 
   @override
   Future<DataResultAppModel<User>> signInWithFacebook() async {
-    AccessToken accessToken = await _facebookAuth.login();
+    AccessToken accessToken;
+    try {
+      accessToken = await _facebookAuth.login();
+    } catch (e) {
+      return DataResultAppModel(
+        isSuccess: false,
+        data: null,
+        errorMessage: null,
+      );
+    }
+
     FacebookAuthCredential credential = FacebookAuthProvider.credential(
       accessToken.token,
     );
-    UserCredential authResult = await _auth.signInWithCredential(credential);
-
-    return DataResultAppModel(
-      isSuccess: true,
-      errorMessage: '',
-      data: authResult.user,
-    );
+    return await _signInWithCredential(credential);
   }
 
   @override
   Future<ResultAppModel> resetPassword(String email) {
-    // TODO: implement resetPassword
     throw UnimplementedError();
   }
 
   @override
   Future<ResultAppModel> signOut() async {
-    await _auth.signOut();
-    var isGoogleSignIn = await _googleSignIn.isSignedIn();
-    var faceBookAccessToken = await _facebookAuth.isLogged;
-    if (isGoogleSignIn) {
-      await _googleSignIn.signOut();
-    } else if (faceBookAccessToken != null) {
-      await _facebookAuth.logOut();
+    try {
+      await _auth.signOut();
+      var isGoogleSignIn = await _googleSignIn.isSignedIn();
+      var faceBookAccessToken = await _facebookAuth.isLogged;
+      if (isGoogleSignIn) {
+        await _googleSignIn.signOut();
+      } else if (faceBookAccessToken != null) {
+        await _facebookAuth.logOut();
+      }
+      return ResultAppModel(isSuccess: true);
+    } catch (e) {
+      return ResultAppModel(isSuccess: false);
     }
   }
+
+  Future<DataResultAppModel<User>> _signInWithCredential(
+      AuthCredential credential) async {
+    UserCredential authResult;
+    try {
+      authResult = await _auth.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      String message = _firebaseAuthErrorMessage[e];
+      return DataResultAppModel(
+        isSuccess: false,
+        errorMessage: message ?? e.message ?? "Something went wrong",
+        data: null,
+      );
+    } catch (e) {
+      return DataResultAppModel(
+        isSuccess: false,
+        errorMessage: e.message ?? 'Something went wrong',
+        data: null,
+      );
+    }
+
+    return DataResultAppModel(
+      isSuccess: true,
+      errorMessage: '',
+      data: authResult.user,
+    );
+  }
 }
+
+Map<String, String> _firebaseAuthErrorMessage = {
+  // SignIn with email
+  'user-not-found': 'Sorry, we cannot find an account with that email address.',
+  'wrong-password': 'The password you entered is incorrect. Please try again.',
+  'invalid-email': 'The email address you entered is invalid.',
+  'user-disabled': 'Sorry, the account has been disabled.',
+  // SignUp with email
+  'email-already-in-use': 'Sorry, the email address is already in used.',
+  'weak-password': 'Sorry, the password is too weak.',
+  // SignIn with Credential
+  'account-exists-with-different-credential':
+      'Sorry, the email address is already used by different account.',
+};
