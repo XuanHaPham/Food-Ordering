@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_ordering/core/viewmodels/commons/interfaces/iauth_viewmodel.dart';
 import 'package:food_ordering/ui/screens/home_screen/home_screen.dart';
 import 'package:food_ordering/ui/screens/register_screen/register_screen.dart';
-import 'package:food_ordering/ui/screens/sign_in_screen/widgets/sign_in_with_google.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class SignInSCreen extends StatefulWidget {
   SignInSCreen({Key key}) : super(key: key);
@@ -16,17 +16,29 @@ class SignInSCreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInSCreen> {
+  IAuthViewmodel _authViewmodel;
   var _showPassword;
+
   @override
   void initState() {
     super.initState();
+
     _showPassword = false;
+    _authViewmodel = context.read<IAuthViewmodel>();
   }
 
   void _togglevisibility() {
     setState(() {
       _showPassword = !_showPassword;
     });
+  }
+
+  Future<void> _googleSignInPress() async {
+    await _authViewmodel.signInWithGoogle();
+  }
+
+  Future<void> _facebookSignInPress() async {
+    await _authViewmodel.signInWithFaceBook();
   }
 
   @override
@@ -238,14 +250,8 @@ class _SignInScreenState extends State<SignInSCreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
-                      onTap: () {
-                        signInWithGoogle().then((result) {
-                          if (result != null) {
-                            
-                            EasyLoading.dismiss();
-                            Get.to(HomeScreen());
-                          }
-                        });
+                      onTap: () async {
+                        await _googleSignInPress();
                       },
                       child: Container(
                         height: 35.h,
@@ -266,7 +272,7 @@ class _SignInScreenState extends State<SignInSCreen> {
                               width: 10.w,
                             ),
                             Text(
-                              "Google",
+                              "Google...",
                               style: TextStyle(
                                 color: Colors.grey[700],
                                 fontSize: 14.sp,
@@ -277,32 +283,37 @@ class _SignInScreenState extends State<SignInSCreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 35.h,
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: Colors.blue,
-                      ),
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            "assets/images/miscs/fb.png",
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(
-                            "Facebook",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
+                    InkWell(
+                      onTap: () async{
+                        await _facebookSignInPress();
+                      },
+                      child: Container(
+                        height: 35.h,
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Colors.blue,
+                        ),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/miscs/fb.png",
+                              height: 20.h,
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              "Facebook",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

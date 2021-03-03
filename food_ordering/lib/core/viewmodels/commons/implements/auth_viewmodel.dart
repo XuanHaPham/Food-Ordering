@@ -8,6 +8,7 @@ import 'package:food_ordering/core/services/interfaces/iauth_service.dart';
 import 'package:food_ordering/core/viewmodels/commons/interfaces/iauth_viewmodel.dart';
 import 'package:food_ordering/global/global_data.dart';
 import 'package:food_ordering/global/locator/locator.dart';
+import 'package:food_ordering/ui/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:food_ordering/ui/utils/dialog_utils.dart';
 import 'package:food_ordering/ui/utils/my_route.dart';
 import 'package:get/get.dart';
@@ -22,30 +23,27 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
   @override
   User get currentUser => _currentUser;
 
-  void _setCurrentUser(User user){
+  void _setCurrentUser(User user) {
     _globalData.currentUser = user;
     _currentUser = _fireBaseAuth.currentUser;
   }
 
-  void _processLoginSignUpResult(ResultAppModel user) async{
-    if(user.isSuccess){
-        
+  void _processLoginSignUpResult(ResultAppModel user) async {
+    if (user.isSuccess) {
+      //DialogUtils.showYesNoDialog();
       Get.toNamed(MyRoute.homeScreen);
-    } else{
+    } else {
       DialogUtils.showYesNoDialog();
     }
   }
 
   @override
   Future<void> signInWithFaceBook() async {
-    await EasyLoading.show(
-      status: 'loading...',
-      maskType: EasyLoadingMaskType.black,
-    );
     DataResultAppModel<User> result = await _authService.signInWithFacebook();
     _setCurrentUser(result.data);
     notifyListeners();
     await EasyLoading.dismiss();
+    _processLoginSignUpResult(result);
   }
 
   @override
@@ -58,6 +56,7 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
     _setCurrentUser(result.data);
     notifyListeners();
     await EasyLoading.dismiss();
+    _processLoginSignUpResult(result);
   }
 
   @override
@@ -67,9 +66,12 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
   }
 
   @override
-  Future<ResultAppModel> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<void> signOut() async {
+    var result = await _authService.signOut();
+    if (result.isSuccess){
+      Get.toNamed(MyRoute.signInScreen); 
+    } else{
+      await EasyLoading.showError("Something went wrong!");
+    }
   }
-
 }

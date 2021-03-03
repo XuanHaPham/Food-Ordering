@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_ordering/ui/screens/sign_in_screen/sign_in_screen.dart';
-import 'package:food_ordering/ui/screens/sign_in_screen/widgets/sign_in_with_google.dart';
-import 'package:get/get.dart';
+import 'package:food_ordering/core/viewmodels/commons/interfaces/iauth_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class ProfileTab extends StatefulWidget {
   ProfileTab({Key key}) : super(key: key);
@@ -12,9 +11,16 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
+  IAuthViewmodel _authViewmodel;
+
+  @override
+  void initState() { 
+    super.initState();
+    _authViewmodel = context.read<IAuthViewmodel>();
+  }
   Widget _buidProfileItem(ProfileItem profileItem, bool isLastItem) {
     return InkWell(
-      onTap: () {
+      onTap: () async{
         switch(profileItem.type){
           case ProfileOrderEnum.help : {
             break;
@@ -23,8 +29,7 @@ class _ProfileTabState extends State<ProfileTab> {
             break;
           }
           case ProfileOrderEnum.logout : {
-            signOutGoogle();
-            Get.offAll(SignInSCreen());
+            await _authViewmodel.signOut();
             break;
           }
           case ProfileOrderEnum.manageAddresses : {
@@ -88,24 +93,24 @@ class _ProfileTabState extends State<ProfileTab> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20.sp,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        email,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.sp,
-                        ),
-                      ),
+                      // Text(
+                      //   name,
+                      //   style: TextStyle(
+                      //     fontWeight: FontWeight.w800,
+                      //     fontSize: 20.sp,
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   height: 5.h,
+                      // ),
+                      // Text(
+                      //   email,
+                      //   style: TextStyle(
+                      //     color: Colors.grey,
+                      //     fontWeight: FontWeight.w600,
+                      //     fontSize: 16.sp,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
