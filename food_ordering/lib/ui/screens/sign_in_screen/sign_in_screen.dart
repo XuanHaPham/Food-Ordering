@@ -18,7 +18,9 @@ class SignInSCreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInSCreen> {
   IAuthViewmodel _authViewmodel;
   var _showPassword;
-
+  final _formKey = GlobalKey<FormState>();
+  String _userName;
+  String _password;
   @override
   void initState() {
     super.initState();
@@ -39,6 +41,10 @@ class _SignInScreenState extends State<SignInSCreen> {
 
   Future<void> _facebookSignInPress() async {
     await _authViewmodel.signInWithFaceBook();
+  }
+
+  Future<void> _usernameAndPasswordSignIn(String email, String password) async {
+    await _authViewmodel.signInWithEmailAndPassword(email, password);
   }
 
   @override
@@ -93,146 +99,161 @@ class _SignInScreenState extends State<SignInSCreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Text("Email ID"),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey[700],
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-                  child: TextFormField(
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {},
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: "Enter your email",
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-                      isDense: true,
-                      hintStyle:
-                          TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
-                      focusColor: Colors.blue,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.r),
-                        borderSide: BorderSide(width: 1.w, color: Colors.white),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Email ID"),
+                      SizedBox(
+                        height: 5.h,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.r),
-                        borderSide: BorderSide(width: 1.w, color: Colors.white),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.r),
-                        borderSide: BorderSide(width: 1.w, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                Text("Password"),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Container(
-                  padding: EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey[700],
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-                  child: TextFormField(
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: !_showPassword,
-                    cursorColor: Colors.red,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      hintText: "Enter your password",
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-                      isDense: true,
-                      hintStyle:
-                          TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
-                      focusColor: Colors.blue,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.r),
-                        borderSide: BorderSide(width: 1.w, color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.r),
-                        borderSide: BorderSide(width: 1.w, color: Colors.white),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.r),
-                        borderSide: BorderSide(width: 1.w, color: Colors.white),
-                      ),
-                      suffixIconConstraints: BoxConstraints(),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          _togglevisibility();
+                      TextFormField(
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: (value) {
+                          _userName = value;
                         },
-                        child: Container(
-                          padding: EdgeInsets.all(8),
-                          child: Icon(
-                            _showPassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.red,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please input your email.';
+                          }
+                          return null;
+                        },
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "Enter your email",
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10.w, vertical: 8.h),
+                          isDense: true,
+                          hintStyle: TextStyle(
+                              fontSize: 14.sp, color: Colors.grey[600]),
+                          focusColor: Colors.blue,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.r),
+                            borderSide:
+                                BorderSide(width: 1.w, color: Colors.grey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.r),
+                            borderSide:
+                                BorderSide(width: 1.w, color: Colors.grey),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.r),
+                            borderSide:
+                                BorderSide(width: 1.w, color: Colors.grey),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.to(HomeScreen());
-                  },
-                  child: Ink(
-                    child: Container(
-                      height: 35.h,
-                      margin: EdgeInsets.symmetric(
-                          horizontal: 15.w, vertical: 20.h),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: Color.fromRGBO(245, 25, 41, 1),
+                      SizedBox(
+                        height: 15.h,
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Sign In",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w700,
+                      Text("Password"),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      TextFormField(
+                        textInputAction: TextInputAction.done,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please input your password.';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          _password = value;
+                        },
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: !_showPassword,
+                        cursorColor: Colors.red,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          hintText: "Enter your password",
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10.w, vertical: 8.h),
+                          isDense: true,
+                          hintStyle: TextStyle(
+                              fontSize: 14.sp, color: Colors.grey[600]),
+                          focusColor: Colors.blue,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.r),
+                            borderSide:
+                                BorderSide(width: 1.w, color: Colors.grey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.r),
+                            borderSide:
+                                BorderSide(width: 1.w, color: Colors.grey),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.r),
+                            borderSide:
+                                BorderSide(width: 1.w, color: Colors.grey),
+                          ),
+                          suffixIconConstraints: BoxConstraints(),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              _togglevisibility();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              child: Icon(
+                                _showPassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          "Forgot Password?",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          if (_formKey.currentState.validate()) {
+                            await _usernameAndPasswordSignIn(
+                                _userName, _password);
+                          }
+                        },
+                        child: Ink(
+                          child: Container(
+                            height: 35.h,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 15.w, vertical: 20.h),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              color: Color.fromRGBO(245, 25, 41, 1),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Sign In",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Text(
@@ -284,7 +305,7 @@ class _SignInScreenState extends State<SignInSCreen> {
                       ),
                     ),
                     InkWell(
-                      onTap: () async{
+                      onTap: () async {
                         await _facebookSignInPress();
                       },
                       child: Container(

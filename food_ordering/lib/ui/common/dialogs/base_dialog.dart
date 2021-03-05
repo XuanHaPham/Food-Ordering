@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BaseDialog extends StatefulWidget {
   final Color background;
@@ -18,8 +19,23 @@ class _BaseDialogState extends State<BaseDialog> {
     return Dialog(
       backgroundColor: widget.background,
       child: Container(
-        child: Text(widget.message),
+        padding: EdgeInsets.all(5.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+ 
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildDialogHeader(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+
+      ],
     );
   }
 }

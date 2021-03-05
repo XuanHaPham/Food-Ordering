@@ -2,17 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:food_ordering/core/app_models/result_app_model.dart';
 import 'package:food_ordering/core/services/interfaces/iauth_service.dart';
 import 'package:food_ordering/core/viewmodels/commons/interfaces/iauth_viewmodel.dart';
 import 'package:food_ordering/global/global_data.dart';
 import 'package:food_ordering/global/locator/locator.dart';
-import 'package:food_ordering/ui/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:food_ordering/ui/utils/dialog_utils.dart';
 import 'package:food_ordering/ui/utils/my_route.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
   final _globalData = locator<GlobalData>();
@@ -35,14 +32,18 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
     } else {
       DialogUtils.showYesNoDialog();
     }
+    await EasyLoading.dismiss();
   }
 
   @override
   Future<void> signInWithFaceBook() async {
+    await EasyLoading.show(
+      status: 'loading...',
+      maskType: EasyLoadingMaskType.black,
+    );
     DataResultAppModel<User> result = await _authService.signInWithFacebook();
     _setCurrentUser(result.data);
     notifyListeners();
-    await EasyLoading.dismiss();
     _processLoginSignUpResult(result);
   }
 
@@ -55,7 +56,6 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
     DataResultAppModel<User> result = await _authService.signInWithGoogle();
     _setCurrentUser(result.data);
     notifyListeners();
-    await EasyLoading.dismiss();
     _processLoginSignUpResult(result);
   }
 
@@ -73,5 +73,10 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
     } else{
       await EasyLoading.showError("Something went wrong!");
     }
+  }
+
+  @override
+  Future<void> signInWithEmailAndPassword(String email, String password) async{
+   DialogUtils.showYesNoDialog();
   }
 }

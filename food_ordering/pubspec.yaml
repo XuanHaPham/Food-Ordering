@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^4.5.3
   flutter_facebook_auth: ^2.0.1
   flutter_easyloading: ^2.2.2
+  awesome_dialog: ^1.3.2
 
 dev_dependencies:
   flutter_test:
