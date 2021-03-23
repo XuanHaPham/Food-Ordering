@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_ordering/core/dtos/user_dto.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key key}) : super(key: key);
@@ -10,7 +11,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-  CustomerAccount _account = new CustomerAccount();
+  UserDTO _account = new UserDTO();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -317,13 +318,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-}
-
-class CustomerAccount {
-  String fullName;
-  String userName;
-  String phoneNumber;
-  String password;
-  CustomerAccount({this.fullName, this.password, this.phoneNumber, this.userName});
 }
 

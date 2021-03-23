@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:food_ordering/core/app_models/result_app_model.dart';
+import 'package:food_ordering/core/dtos/user_dto.dart';
 import 'package:food_ordering/core/services/interfaces/iauth_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -63,6 +64,36 @@ class AuthService implements IAuthService {
     }
   }
 
+  @override
+  Future<DataResultAppModel<User>> signInWithUsernameAndPassword(
+      String username, String password) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: username,
+        password: password,
+      );
+      return DataResultAppModel(
+        isSuccess: true,
+        errorMessage: '',
+        data: userCredential.user,
+      );
+    } on FirebaseException catch (e) {
+      String message = _firebaseAuthErrorMessage[e];
+      return DataResultAppModel(
+        isSuccess: false,
+        data: null,
+        errorMessage: message ?? e.message ?? "Something went wrong",
+      );
+    } catch (e) {
+      return DataResultAppModel(
+        isSuccess: false,
+        errorMessage: e.message ?? 'Something went wrong',
+        data: null,
+      );
+    }
+  }
+
   Future<DataResultAppModel<User>> _signInWithCredential(
       AuthCredential credential) async {
     UserCredential authResult;
@@ -88,6 +119,34 @@ class AuthService implements IAuthService {
       errorMessage: '',
       data: authResult.user,
     );
+  }
+
+  Future<ResultAppModel> registration(UserDTO registrationUser) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: registrationUser.userName,
+        password: registrationUser.password,
+      );
+      return DataResultAppModel(
+        isSuccess: true,
+        data: userCredential.user,
+        errorMessage: '',
+      );
+    } on FirebaseAuthException catch (e) {
+      String message = _firebaseAuthErrorMessage[e];
+      return DataResultAppModel(
+        isSuccess: false,
+        errorMessage: message ?? e.message ?? "Something went wrong",
+        data: null,
+      );
+    } catch (e) {
+      return DataResultAppModel(
+        isSuccess: false,
+        errorMessage: e.message ?? 'Something went wrong',
+        data: null,
+      );
+    }
   }
 }
 

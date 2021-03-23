@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:food_ordering/core/app_models/result_app_model.dart';
+import 'package:food_ordering/core/dtos/user_dto.dart';
 import 'package:food_ordering/core/services/interfaces/iauth_service.dart';
 import 'package:food_ordering/core/viewmodels/commons/interfaces/iauth_viewmodel.dart';
 import 'package:food_ordering/global/global_data.dart';
@@ -30,7 +31,8 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
       //DialogUtils.showYesNoDialog();
       Get.toNamed(MyRoute.homeScreen);
     } else {
-      DialogUtils.showYesNoDialog();
+      DialogUtils.showMessageDialog(
+          title: "Error!", desciption: user.errorMessage,);
     }
     await EasyLoading.dismiss();
   }
@@ -68,15 +70,36 @@ class AuthViewmodel extends ChangeNotifier implements IAuthViewmodel {
   @override
   Future<void> signOut() async {
     var result = await _authService.signOut();
-    if (result.isSuccess){
-      Get.toNamed(MyRoute.signInScreen); 
-    } else{
+    if (result.isSuccess) {
+      Get.toNamed(MyRoute.signInScreen);
+    } else {
       await EasyLoading.showError("Something went wrong!");
     }
   }
 
   @override
-  Future<void> signInWithEmailAndPassword(String email, String password) async{
-   DialogUtils.showYesNoDialog();
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    await EasyLoading.show(
+      status: 'loading...',
+      maskType: EasyLoadingMaskType.black,
+    );
+    DataResultAppModel<User> result =
+        await _authService.signInWithUsernameAndPassword(email, password);
+    _setCurrentUser(result.data);
+    notifyListeners();
+    _processLoginSignUpResult(result);
+  }
+
+  @override 
+  Future<void> registrationWithEmailAndPassword(UserDTO resgistrationUser) async{
+    await EasyLoading.show(
+      status: 'loading...',
+      maskType: EasyLoadingMaskType.black,
+    );
+    DataResultAppModel<User> result =
+        await _authService.registration(resgistrationUser);
+    _setCurrentUser(result.data);
+    notifyListeners();
+    _processLoginSignUpResult(result);
   }
 }
